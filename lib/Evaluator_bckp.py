@@ -58,7 +58,6 @@ class Evaluator:
         classes = []
 
         # Loop through all bounding boxes and separate them into GTs and detections
-        # print(f'bb {len(boundingboxes.getBoundingBoxes())}')
         for bb in boundingboxes.getBoundingBoxes():
 
             # [imageName, class, confidence, (bb coordinates XYX2Y2)]
@@ -325,8 +324,6 @@ class Evaluator:
         mpre.append(0)
         [mpre.append(e) for e in prec]
         mpre.append(0)
-        print (f'recall_store {mrec}')
-        print(f'recall_store {mpre}')
         for i in range(len(mpre) - 1, 0, -1):
             mpre[i - 1] = max(mpre[i - 1], mpre[i])
         ii = []
@@ -423,7 +420,7 @@ class Evaluator:
     # boxB = (Bx1,By1,Bx2,By2)
     @staticmethod
     def _boxesIntersect(boxA, boxB):
-
+        print (f'box {boxA}, {boxB}')
         if boxA[0] > boxB[2]:
             return False  # boxA is right of boxB
         if boxB[0] > boxA[2]:
